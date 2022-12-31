@@ -45,7 +45,7 @@ main {
   flex-direction: column;
   flex-grow: 1;
   background-color: #dae4f8;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   overflow-y: auto;
 }

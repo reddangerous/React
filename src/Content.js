@@ -22,12 +22,15 @@ const Content = () =>{
     ]);
 
     const handleCheck = (id) =>{
-        setItem(item.map((item) =>{
-            if(item.id === id){
-                item.checked = !item.checked
-            }
-            return item
-        }))
+      const listItem= item.map((item) =>
+            item.id === id ?{ ...item,checked : !item.checked} : item);
+         setItem(listItem);
+         localStorage.setItem("item", JSON.stringify(listItem));
+    }
+    const handleDelete = (id) =>{
+        const listItem = item.filter((item) => item.id !== id);
+        setItem(listItem);
+        localStorage.setItem("item", JSON.stringify(listItem));
     }
    
     return(
@@ -40,7 +43,11 @@ const Content = () =>{
                     <label>
                         {item.item}
                     </label>
-                    <FaTrashAlt role={"button"} className="trash" tabIndex= "0"/>
+                    <FaTrashAlt role={"button"} 
+                    className="trash"
+                     tabIndex= "0"
+                     onClick={() => handleDelete(item.id)}
+                     />
                     </li>
                 ))}
             </ul>
